@@ -1638,6 +1638,8 @@ class Runner:
 
         # initialize the model weights
         self._init_model_weights()
+        # make sure state_dict in optimizer are resumed to the right device
+        self.model = self.model.to(get_device())
         # make sure checkpoint-related hooks are triggered after `before_run`
         self.load_or_resume()
         # lazy wrap model. This should be called after `load_or_resume` to be
