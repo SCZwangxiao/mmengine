@@ -934,7 +934,7 @@ class Runner:
                 return any(_is_built(s) for s in schedulers)
             return isinstance(schedulers, _ParamScheduler)
 
-        if _is_built(self.param_schedulers):
+        if _is_built(self.param_schedulers) and not self._has_loaded:
             raise RuntimeError('`scale_lr` should be called before building '
                                'ParamScheduler because ParamScheduler will '
                                'store initial lr from optimizer wrappers')
